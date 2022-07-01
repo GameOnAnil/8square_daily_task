@@ -45,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: CustomPaint(
-          painter: BackgroundPainter(),
+          painter: BackgroundPainterLogin(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

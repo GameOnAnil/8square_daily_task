@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intern_task_week2/utils/my_colors.dart';
 
 class CustomTextRow extends StatelessWidget {
   final String title;
@@ -19,7 +20,7 @@ class CustomTextRow extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.lobster(
-              color: const Color.fromARGB(255, 92, 27, 158),
+              color: mainBlue,
               fontWeight: FontWeight.w400,
               fontSize: 24.sp,
               decoration: TextDecoration.underline),

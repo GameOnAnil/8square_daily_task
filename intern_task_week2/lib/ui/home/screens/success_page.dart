@@ -17,22 +17,19 @@ class SuccessPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomPaint(
-        painter: BackgroundPainter(),
-        child: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _buildCard(),
-                  const SizedBox(height: 16),
-                  _buildGoBackButton(context),
-                ],
-              ),
-            )),
+        painter: BackgroundPainter3(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildCard(),
+              const SizedBox(height: 16),
+              _buildGoBackButton(context),
+            ],
+          ),
+        ),
       ),
     );
   }

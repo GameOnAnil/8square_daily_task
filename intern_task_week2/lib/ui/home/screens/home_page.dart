@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _appBar(context),
       body: CustomPaint(
-        painter: BackgroundPainter2(),
+        painter: BackgroundPainterHome(),
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -119,6 +119,8 @@ class _HomePageState extends State<HomePage> {
                     onValidate: (value) {
                       return Validator().validateMaden(value);
                     },
+                    formatter:
+                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
                   ),
                   SizedBox(height: 16.h),
                   CustomTextField(
@@ -151,6 +153,8 @@ class _HomePageState extends State<HomePage> {
       onValidate: (value) {
         return Validator().validateName(value);
       },
+      formatter: FilteringTextInputFormatter.allow(
+          RegExp("^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+\$")),
     );
   }
 
@@ -236,6 +240,7 @@ class _HomePageState extends State<HomePage> {
             onValidate: (value) {
               return Validator().validateIdName(value);
             },
+            formatter: FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
           ),
         )
       ],

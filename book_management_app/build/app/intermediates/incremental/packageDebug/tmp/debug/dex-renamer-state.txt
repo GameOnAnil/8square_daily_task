@@ -1,0 +1,4 @@
+#Fri Jun 24 11:49:28 NPT 2022
+base.0=/Users/anilthapa/Flutter Project/book_management_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
