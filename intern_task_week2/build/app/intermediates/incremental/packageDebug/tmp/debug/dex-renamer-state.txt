@@ -1,4 +1,0 @@
-#Thu Jun 30 15:26:16 NPT 2022
-base.0=/Users/anilthapa/Flutter Project/intern_task_week2/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-renamed.0=classes.dex
-path.0=classes.dex
