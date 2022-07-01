@@ -153,8 +153,7 @@ class _HomePageState extends State<HomePage> {
       onValidate: (value) {
         return Validator().validateName(value);
       },
-      formatter: FilteringTextInputFormatter.allow(
-          RegExp("^([a-zA-Z0-9]+\\s)*[a-zA-Z0-9]+\$")),
+      formatter: FilteringTextInputFormatter.allow(RegExp("[A-Za-z ]")),
     );
   }
 
