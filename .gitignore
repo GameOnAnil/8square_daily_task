@@ -1,1 +1,47 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
 .DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+.DS_Store
+intern_task_week2/.dart_tool/flutter_build/f0b5711ade15325311bba6d654f6d93c/.filecache
+intern_task_week2/build/
+
+# Flutter/Dart/Pub related
+intern_task_week2/**/doc/api/
+intern_task_week2/**/ios/Flutter/.last_build_id
+intern_task_week2/.dart_tool/
+intern_task_week2/.flutter-plugins
+intern_task_week2/.flutter-plugins-dependencies
+intern_task_week2/.packages
+intern_task_week2/.pub-cache/
+intern_task_week2/.pub/
+
+
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+intern_task_week2/android/app/debug
+intern_task_week2/android/app/profile
+intern_task_week2/android/app/release

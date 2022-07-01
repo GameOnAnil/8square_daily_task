@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final TextInputType inputType;
-  final TextInputFormatter? formatter;
+  final List<TextInputFormatter>? formatter;
   final Function(String? value) onValidate;
   final IconData? icon;
 
@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
         suffixIcon: (icon != null) ? Icon(icon) : null,
       ),
       keyboardType: inputType,
-      inputFormatters: (formatter != null) ? [formatter!] : [],
+      inputFormatters: (formatter != null) ? formatter : [],
       validator: (value) {
         return onValidate(value);
       },

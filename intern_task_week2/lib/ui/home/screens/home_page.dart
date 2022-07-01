@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
                         ? const TextInputType.numberWithOptions(
                             decimal: true, signed: true)
                         : TextInputType.number,
-                    formatter: FilteringTextInputFormatter.digitsOnly,
+                    formatter: getFormatter(isName: false),
                     onValidate: (value) {
                       return Validator().validateId(value);
                     },
@@ -119,8 +119,7 @@ class _HomePageState extends State<HomePage> {
                     onValidate: (value) {
                       return Validator().validateMaden(value);
                     },
-                    formatter:
-                        FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+                    formatter: getFormatter(isName: true),
                   ),
                   SizedBox(height: 16.h),
                   CustomTextField(
@@ -130,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                         ? const TextInputType.numberWithOptions(
                             decimal: true, signed: true)
                         : TextInputType.number,
-                    formatter: FilteringTextInputFormatter.digitsOnly,
+                    formatter: getFormatter(isName: false),
                     onValidate: (value) {},
                   ),
                   SizedBox(height: 16.h),
@@ -153,8 +152,21 @@ class _HomePageState extends State<HomePage> {
       onValidate: (value) {
         return Validator().validateName(value);
       },
-      formatter: FilteringTextInputFormatter.allow(RegExp("[A-Za-z ]")),
+      formatter: getFormatter(isName: true),
     );
+  }
+
+  List<TextInputFormatter> getFormatter({required bool isName}) {
+    if (isName) {
+      return [
+        FilteringTextInputFormatter.allow(RegExp("[A-Za-z ]")),
+        FilteringTextInputFormatter.deny("  ")
+      ];
+    } else {
+      return [
+        FilteringTextInputFormatter.digitsOnly,
+      ];
+    }
   }
 
   SizedBox _headerText(BuildContext context) {
@@ -239,7 +251,7 @@ class _HomePageState extends State<HomePage> {
             onValidate: (value) {
               return Validator().validateIdName(value);
             },
-            formatter: FilteringTextInputFormatter.allow(RegExp("[a-zA-Z ]")),
+            formatter: getFormatter(isName: true),
           ),
         )
       ],
