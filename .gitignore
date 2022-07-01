@@ -17,7 +17,7 @@ migrate_working_dir/
 .idea/
 
 .DS_Store
-intern_task_week2/.dart_tool/flutter_build/f0b5711ade15325311bba6d654f6d93c/.filecache
+intern_task_week2/.dart_tool/
 intern_task_week2/build/
 
 # Flutter/Dart/Pub related
@@ -45,3 +45,4 @@ app.*.map.json
 intern_task_week2/android/app/debug
 intern_task_week2/android/app/profile
 intern_task_week2/android/app/release
+intern_task_week2/build/ios/Debug-iphonesimulator/App.framework/App
