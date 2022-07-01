@@ -187,11 +187,13 @@ class _HomePageState extends State<HomePage> {
       readOnly: true,
       controller: doaController,
       onTap: () async {
+        final currentDate = DateTime.now();
+        final initialDate = DateTime(currentDate.year - 18);
         DateTime? date = await showDatePicker(
           context: context,
-          initialDate: DateTime(2000),
-          firstDate: DateTime(1900),
-          lastDate: DateTime(2200),
+          initialDate: initialDate,
+          firstDate: initialDate,
+          lastDate: currentDate,
         );
         if (date != null) {
           final formattedDate = DateFormat('yyyy-MM-dd').format(date);
@@ -299,18 +301,6 @@ class _HomePageState extends State<HomePage> {
                     phone: widget.phone)
               });
             }
-            // Navigator.pushNamed(context, "/success", arguments: {
-            //   "successModel": Success(
-            //       namePerId: "$pronoune Anil thapa",
-            //       name: "$pronoune anil",
-            //       id: "123",
-            //       dob: "2022-01-01",
-            //       gender: "Male",
-            //       email: "test@gmail.com",
-            //       madenName: "lisa ",
-            //       promo: "123",
-            //       phone: "9861237")
-            // });
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(mainBlue),
