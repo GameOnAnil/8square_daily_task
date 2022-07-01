@@ -1,0 +1,1 @@
+ /Users/anilthapa/Flutter\ Project/intern_task_week2/./.dart_tool/flutter_gen/gen_l10n/app_localizations_en.dart /Users/anilthapa/Flutter\ Project/intern_task_week2/./.dart_tool/flutter_gen/gen_l10n/app_localizations.dart:  ./l10n.yaml /Users/anilthapa/Flutter\ Project/intern_task_week2/./lib/l10n/app_en.arb
