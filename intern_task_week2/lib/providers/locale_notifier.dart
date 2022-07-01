@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final localeProvider = ChangeNotifierProvider(((ref) => LocaleNotifer()));
 
 class LocaleNotifer extends ChangeNotifier {
-  Locale locale = const Locale("hi");
+  Locale locale = const Locale("en");
 
   void setLocale(Locale newLocale) {
     locale = newLocale;

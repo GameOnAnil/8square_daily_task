@@ -3,17 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intern_task_week2/ui/authentication/widgets/title_text.dart';
 import 'package:intern_task_week2/utils/my_colors.dart';
 
-class ChooseGender extends StatefulWidget {
+class ChooseGender extends StatelessWidget {
+  final Function() changeGender;
+  final bool isMale;
   const ChooseGender({
     Key? key,
+    required this.changeGender,
+    required this.isMale,
   }) : super(key: key);
-
-  @override
-  State<ChooseGender> createState() => _ChooseGenderState();
-}
-
-class _ChooseGenderState extends State<ChooseGender> {
-  bool isMale = true;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +35,7 @@ class _ChooseGenderState extends State<ChooseGender> {
   GestureDetector _maleButton() {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isMale = true;
-        });
+        changeGender();
       },
       child: Container(
         height: 50.h,
@@ -64,9 +59,7 @@ class _ChooseGenderState extends State<ChooseGender> {
   GestureDetector _femaleButton() {
     return GestureDetector(
       onTap: () {
-        setState(() {
-          isMale = false;
-        });
+        changeGender();
       },
       child: Container(
         height: 50.h,

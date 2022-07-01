@@ -102,7 +102,10 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushNamed(
         context,
         Routes.homePage,
-        arguments: {"phone": phoneController.text.trim()},
+        arguments: {
+          "phone":
+              "${selectedCountry.countryCode} ${phoneController.text.trim()}"
+        },
       );
     }
   }

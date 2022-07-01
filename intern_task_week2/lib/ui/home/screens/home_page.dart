@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intern_task_week2/models/success_model.dart';
 import 'package:intern_task_week2/ui/authentication/widgets/back_arrow_button.dart';
 import 'package:intern_task_week2/ui/authentication/widgets/profile_icon_button.dart';
 import 'package:intern_task_week2/ui/authentication/widgets/title_text.dart';
@@ -31,6 +32,9 @@ class _HomePageState extends State<HomePage> {
   late TextEditingController promoController;
 
   final GlobalKey<FormState> _globalKey = GlobalKey();
+
+  bool isMale = true;
+  String pronoune = mrType.first;
 
   @override
   void initState() {
@@ -90,7 +94,14 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 16.h),
                   _dateTextField(context),
                   SizedBox(height: 16.h),
-                  const ChooseGender(),
+                  ChooseGender(
+                    isMale: isMale,
+                    changeGender: () {
+                      setState(() {
+                        isMale = !isMale;
+                      });
+                    },
+                  ),
                   SizedBox(height: 16.h),
                   CustomTextField(
                     label: "Email Address",
@@ -135,7 +146,7 @@ class _HomePageState extends State<HomePage> {
   CustomTextField _preferedTextFied() {
     return CustomTextField(
       label: "Your Prefered Name",
-      controller: idNameController,
+      controller: nameController,
       inputType: TextInputType.name,
       onValidate: (value) {
         return Validator().validateName(value);
@@ -209,7 +220,11 @@ class _HomePageState extends State<HomePage> {
                       ))
                   .toList()
             ],
-            onChanged: (item) {},
+            onChanged: (item) {
+              setState(() {
+                pronoune = item as String;
+              });
+            },
           ),
         ),
         SizedBox(width: 10.w),
@@ -248,25 +263,47 @@ class _HomePageState extends State<HomePage> {
 
   SizedBox _continueButton(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: 50.h,
-      child: ElevatedButton(
-        onPressed: () {
-          if (_globalKey.currentState!.validate()) {
-            Navigator.pushNamed(
-              context,
-              "/success",
-            );
-          }
-        },
-        style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(mainBlue),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0.r)),
+        width: double.infinity,
+        height: 50.h,
+        child: ElevatedButton(
+          onPressed: () {
+            if (_globalKey.currentState!.validate()) {
+              Navigator.pushNamed(context, "/success", arguments: {
+                "successModel": Success(
+                    namePerId: idNameController.text,
+                    name: nameController.text,
+                    id: idController.text,
+                    dob: doaController.text,
+                    gender: isMale ? "Male" : "Female",
+                    email: emailController.text,
+                    madenName: madenController.text,
+                    promo: (promoController.text.isNotEmpty)
+                        ? promoController.text
+                        : null,
+                    phone: widget.phone)
+              });
+            }
+            // Navigator.pushNamed(context, "/success", arguments: {
+            //   "successModel": Success(
+            //       namePerId: "$pronoune Anil thapa",
+            //       name: "$pronoune anil",
+            //       id: "123",
+            //       dob: "2022-01-01",
+            //       gender: "Male",
+            //       email: "test@gmail.com",
+            //       madenName: "lisa ",
+            //       promo: "123",
+            //       phone: "9861237")
+            // });
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(mainBlue),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(32.0.r)),
+            ),
           ),
-        ),
-        child: const Text("Continue"),
-      ),
-    );
+          child: const Text("Continue"),
+        ));
   }
 }

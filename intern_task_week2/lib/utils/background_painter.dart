@@ -49,7 +49,8 @@ class BackgroundPainter3 extends CustomPainter {
     final screenWidth = size.width;
 
     final paint = Paint()
-      ..color = mainBlue.withOpacity(.9)
+      // ..color = mainBlue.withOpacity(.9)
+      ..color = Colors.white
       ..strokeWidth = 3
       ..style = PaintingStyle.fill;
 

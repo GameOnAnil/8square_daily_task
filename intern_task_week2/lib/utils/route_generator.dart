@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intern_task_week2/models/success_model.dart';
 import 'package:intern_task_week2/ui/authentication/screens/login_page.dart';
 import 'package:intern_task_week2/ui/home/screens/home_page.dart';
 import 'package:intern_task_week2/ui/home/screens/success_page.dart';
@@ -16,7 +17,10 @@ class RouteGenerator {
                   phone: arguments!["phone"] as String,
                 )));
       case Routes.successPage:
-        return MaterialPageRoute(builder: ((context) => const SuccessPage()));
+        return MaterialPageRoute(
+            builder: ((context) => SuccessPage(
+                  successModel: arguments!["successModel"] as Success,
+                )));
       default:
         return MaterialPageRoute(builder: ((context) => const LoginPage()));
     }
