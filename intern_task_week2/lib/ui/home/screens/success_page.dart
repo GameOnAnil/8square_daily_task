@@ -72,7 +72,7 @@ class SuccessPage extends StatelessWidget {
                 value: successModel.phone,
               ),
               CustomTextRow(
-                title: "Mothers Maden Name:",
+                title: "Maden Name:",
                 value: successModel.madenName,
               ),
               (successModel.promo != null)

@@ -17,14 +17,18 @@ class CustomTextRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: GoogleFonts.lobster(
-              color: mainBlue,
-              fontWeight: FontWeight.w400,
-              fontSize: 24.sp,
-              decoration: TextDecoration.underline),
-          textAlign: TextAlign.center,
+        ConstrainedBox(
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .45),
+          child: Text(
+            title,
+            style: GoogleFonts.lobster(
+                color: mainBlue,
+                fontWeight: FontWeight.w400,
+                fontSize: 24.sp,
+                decoration: TextDecoration.underline),
+            textAlign: TextAlign.start,
+          ),
         ),
         const SizedBox(width: 10),
         Flexible(
@@ -35,7 +39,7 @@ class CustomTextRow extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontSize: 24.sp,
             ),
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
           ),
         ),
       ],
