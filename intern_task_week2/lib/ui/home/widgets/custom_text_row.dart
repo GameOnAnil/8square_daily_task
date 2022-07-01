@@ -19,7 +19,7 @@ class CustomTextRow extends StatelessWidget {
         Text(
           title,
           style: GoogleFonts.lobster(
-              color: const Color.fromARGB(255, 152, 255, 118),
+              color: const Color.fromARGB(255, 92, 27, 158),
               fontWeight: FontWeight.w400,
               fontSize: 24.sp,
               decoration: TextDecoration.underline),
@@ -30,7 +30,7 @@ class CustomTextRow extends StatelessWidget {
           child: Text(
             value,
             style: GoogleFonts.lobster(
-              color: Colors.white,
+              color: Colors.black,
               fontWeight: FontWeight.normal,
               fontSize: 24.sp,
             ),
