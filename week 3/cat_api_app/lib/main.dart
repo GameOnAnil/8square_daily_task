@@ -1,5 +1,8 @@
+import 'package:cat_api_app/providers/breeds_notifier.dart';
+import 'package:cat_api_app/services/api_service.dart';
 import 'package:cat_api_app/ui/home/screens/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +14,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: ((context) => BreedsNotifier(ApiService())),
+        )
+      ],
+      child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const HomePage());
+        home: const HomePage(),
+      ),
+    );
   }
 }
