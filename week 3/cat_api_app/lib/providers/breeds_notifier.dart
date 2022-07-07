@@ -7,9 +7,15 @@ class BreedsNotifier extends ChangeNotifier {
   List<Breeds> breedList = [];
   String error = "";
   bool isLoading = false;
+  Breeds? selectedBreed;
 
   BreedsNotifier(this.apiService) {
     getAllBreeds();
+  }
+
+  void selectBreed(Breeds? breed) {
+    selectedBreed = breed;
+    notifyListeners();
   }
 
   Future<void> getAllBreeds() async {

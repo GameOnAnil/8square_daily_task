@@ -1,4 +1,3 @@
-import 'package:cat_api_app/models/breeds_model.dart';
 import 'package:cat_api_app/providers/breeds_notifier.dart';
 import 'package:cat_api_app/ui/home/widgets/breeds_drop_down.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +12,11 @@ class BreedPage extends StatelessWidget {
     final error = context.watch<BreedsNotifier>().error;
 
     if (error.isNotEmpty) {
-      return const Center(
-        child: Text("Error"),
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: Text("Error:$error"),
+        ),
       );
     } else if (isLoading) {
       return _buildProgressIndicator();
@@ -27,6 +29,8 @@ class BreedPage extends StatelessWidget {
     }
   }
 
+  _buildHasDataPart() {}
+
   Center _buildProgressIndicator() {
     return const Center(
       child: CircularProgressIndicator(),
@@ -36,17 +40,6 @@ class BreedPage extends StatelessWidget {
   Center _buildListNull() {
     return const Center(
       child: Text("Null"),
-    );
-  }
-
-  ListView _buildHasData(List<Breeds>? breedList) {
-    return ListView.builder(
-      itemCount: breedList?.length,
-      itemBuilder: ((context, index) {
-        return ListTile(
-          title: Text(breedList![index].name!),
-        );
-      }),
     );
   }
 }

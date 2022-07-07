@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:cat_api_app/models/image.dart';
+
 class Breeds {
   String? altNames;
   String? id;
@@ -11,6 +13,7 @@ class Breeds {
   String? temperament;
   String? weightImperial;
   String? wikipediaUrl;
+  Image? image;
   Breeds({
     this.altNames,
     this.id,
@@ -22,35 +25,38 @@ class Breeds {
     this.temperament,
     this.weightImperial,
     this.wikipediaUrl,
+    this.image,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'alt_names': altNames,
+      'altNames': altNames,
       'id': id,
-      'life_span': lifeSpan,
+      'lifeSpan': lifeSpan,
       'name': name,
       'origin': origin,
       'rare': rare,
-      'reference_image_id': referenceImageId,
+      'referenceImageId': referenceImageId,
       'temperament': temperament,
-      'weight_imperial': weightImperial,
-      'wikipedia_url': wikipediaUrl,
+      'weightImperial': weightImperial,
+      'wikipediaUrl': wikipediaUrl,
+      'image': image?.toMap(),
     };
   }
 
   factory Breeds.fromMap(Map<String, dynamic> map) {
     return Breeds(
-      altNames: map['alt_names'],
+      altNames: map['altNames'],
       id: map['id'],
-      lifeSpan: map['life_span'],
+      lifeSpan: map['lifeSpan'],
       name: map['name'],
       origin: map['origin'],
       rare: map['rare']?.toInt(),
-      referenceImageId: map['reference_image_id'],
+      referenceImageId: map['referenceImageId'],
       temperament: map['temperament'],
-      weightImperial: map['weight_imperial'],
-      wikipediaUrl: map['wikipedia_url'],
+      weightImperial: map['weightImperial'],
+      wikipediaUrl: map['wikipediaUrl'],
+      image: map['image'] != null ? Image.fromMap(map['image']) : null,
     );
   }
 

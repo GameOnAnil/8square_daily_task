@@ -12,7 +12,7 @@ class ApiService {
       final List<Breeds> breedList =
           jsonResult.map((e) => Breeds.fromMap(e)).toList();
       return breedList;
-    } catch (e) {
+    } on DioError {
       rethrow;
     }
   }
