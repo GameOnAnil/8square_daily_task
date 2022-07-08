@@ -7,6 +7,7 @@ class Breeds {
   String? id;
   String? lifeSpan;
   String? name;
+  String? description;
   String? origin;
   int? rare;
   String? referenceImageId;
@@ -19,6 +20,7 @@ class Breeds {
     this.id,
     this.lifeSpan,
     this.name,
+    this.description,
     this.origin,
     this.rare,
     this.referenceImageId,
@@ -34,6 +36,7 @@ class Breeds {
       'id': id,
       'lifeSpan': lifeSpan,
       'name': name,
+      'description': description,
       'origin': origin,
       'rare': rare,
       'referenceImageId': referenceImageId,
@@ -50,6 +53,7 @@ class Breeds {
       id: map['id'],
       lifeSpan: map['lifeSpan'],
       name: map['name'],
+      description: map['description'],
       origin: map['origin'],
       rare: map['rare']?.toInt(),
       referenceImageId: map['referenceImageId'],
