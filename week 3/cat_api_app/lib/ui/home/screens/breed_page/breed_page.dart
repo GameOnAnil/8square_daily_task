@@ -8,17 +8,20 @@ class BreedPage extends StatelessWidget {
   const BreedPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final breedList = context.watch<BreedsNotifier>().breedList;
-    final status = context.watch<BreedsNotifier>().status;
-    final error = context.watch<BreedsNotifier>().error;
-
-    if (status == Status.success) {
-      return _buildBody(breedList);
-    }
-    if (status == Status.failure) {
-      return _buildErrorWidget(error);
-    }
-    return _buildProgressIndicator();
+    return Consumer(
+      builder: ((context, ref, child) {
+        final status = context.watch<BreedsNotifier>().status;
+        final breedList = context.watch<BreedsNotifier>().breedList;
+        final error = context.watch<BreedsNotifier>().error;
+        if (status == Status.success) {
+          return _buildBody(breedList, context);
+        }
+        if (status == Status.failure) {
+          return _buildErrorWidget(error);
+        }
+        return _buildProgressIndicator();
+      }),
+    );
   }
 
   Padding _buildErrorWidget(String error) {
@@ -30,27 +33,25 @@ class BreedPage extends StatelessWidget {
     );
   }
 
-  Consumer<BreedsNotifier> _buildBody(List<Breeds> breedList) {
-    return Consumer<BreedsNotifier>(builder: (context, ref, child) {
-      final selectedBreed = ref.selectedBreed;
-      final imageUrl = selectedBreed?.image?.url;
-      return Column(
-        children: [
-          _buildDropDownField(selectedBreed, context, breedList),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  (imageUrl != null)
-                      ? _buildContent(selectedBreed!, context, imageUrl)
-                      : const Center()
-                ],
-              ),
+  _buildBody(List<Breeds> breedList, BuildContext context) {
+    final selectedBreed = context.watch<BreedsNotifier>().selectedBreed;
+    final imageUrl = selectedBreed?.image?.url;
+    return Column(
+      children: [
+        _buildDropDownField(selectedBreed, context, breedList),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                (imageUrl != null)
+                    ? _buildContent(selectedBreed!, context, imageUrl)
+                    : const Center()
+              ],
             ),
-          )
-        ],
-      );
-    });
+          ),
+        )
+      ],
+    );
   }
 
   Column _buildContent(

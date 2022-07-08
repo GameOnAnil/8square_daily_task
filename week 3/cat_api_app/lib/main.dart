@@ -1,7 +1,7 @@
 import 'package:cat_api_app/providers/breeds_notifier.dart';
 import 'package:cat_api_app/providers/votes_notifier.dart';
 import 'package:cat_api_app/services/api_service.dart';
-import 'package:cat_api_app/ui/home/screens/home_page.dart';
+import 'package:cat_api_app/ui/home/screens/home_page/home_page.dart';
 import 'package:chucker_flutter/chucker_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
