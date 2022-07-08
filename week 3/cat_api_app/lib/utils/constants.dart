@@ -1,8 +1,8 @@
-import 'package:cat_api_app/ui/home/screens/tabs/breed_page.dart';
-import 'package:cat_api_app/ui/home/screens/tabs/favourite_page.dart';
-import 'package:cat_api_app/ui/home/screens/tabs/images_page.dart';
-import 'package:cat_api_app/ui/home/screens/tabs/upload_page.dart';
-import 'package:cat_api_app/ui/home/screens/tabs/vote_page.dart';
+import 'package:cat_api_app/ui/home/screens/breed_page.dart';
+import 'package:cat_api_app/ui/home/screens/favourite_page.dart';
+import 'package:cat_api_app/ui/home/screens/images_page.dart';
+import 'package:cat_api_app/ui/home/screens/upload_page.dart';
+import 'package:cat_api_app/ui/home/screens/vote_page.dart';
 import 'package:flutter/material.dart';
 
 List<Tab> tabTitleList = [

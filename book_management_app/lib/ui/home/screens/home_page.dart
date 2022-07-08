@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:authentication/services/auth_sevice.dart';
 import 'package:book_management_app/services/providers.dart';
 import 'package:book_management_app/ui/home/screens/book_list_page.dart';
@@ -56,7 +54,6 @@ class HomePage extends ConsumerWidget {
                       itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
                         final currentItem = snapshot.data![index];
-                        log("CURRENTITEM:$currentItem and index:$index");
                         return GestureDetector(
                           onTap: (() => Navigator.push(
                                 context,
