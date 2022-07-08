@@ -1,7 +1,9 @@
 import 'package:cat_api_app/providers/votes_notifier.dart';
-import 'package:cat_api_app/utils/response_status.dart';
+import 'package:cat_api_app/ui/home/screens/votes_page/widget/vote_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'widget/vote_image.dart';
 
 class VotePage extends StatelessWidget {
   const VotePage({Key? key}) : super(key: key);
@@ -11,10 +13,7 @@ class VotePage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * .5,
-            child: _buildImagePart()),
+        const VotesImageWidget(),
         _buildButtonPart(context),
       ],
     );
@@ -26,66 +25,36 @@ class VotePage extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          _voteUpButton(context),
-          _voteDownButton(context),
+          Expanded(
+            child: VoteButton(
+              name: "Vote Up",
+              ontap: () => handleVoteUpClicked(context),
+            ),
+          ),
+          Expanded(
+            child: VoteButton(
+              name: "Vote Up",
+              ontap: () => handleVoteUpClicked(context),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Expanded _voteDownButton(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () async {
-            final image =
-                Provider.of<VotesNotifier>(context, listen: false).randomImage;
-
-            if (image != null) {
-              await context.read<VotesNotifier>().voteDown();
-            }
-          },
-          child: const Text("Down Vote"),
-        ),
-      ),
-    );
+  handleVoteUpClicked(BuildContext context) async {
+    final image =
+        Provider.of<VotesNotifier>(context, listen: false).randomImage;
+    if (image != null) {
+      await context.read<VotesNotifier>().voteUp();
+    }
   }
 
-  Expanded _voteUpButton(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ElevatedButton(
-          onPressed: () async {
-            final image =
-                Provider.of<VotesNotifier>(context, listen: false).randomImage;
-            if (image != null) {
-              await context.read<VotesNotifier>().voteUp();
-            }
-          },
-          child: const Text("Up Vote"),
-        ),
-      ),
-    );
-  }
-
-  Consumer<VotesNotifier> _buildImagePart() {
-    return Consumer<VotesNotifier>(builder: (context, notifier, child) {
-      final status = notifier.status;
-      if (status == Status.success) {
-        return Image.network(notifier.randomImage!.url);
-      }
-      if (status == Status.failure) {
-        return Center(
-          child: Text(notifier.error),
-        );
-      }
-      if (status == Status.loading) {
-        return const Center(child: CircularProgressIndicator());
-      }
-
-      return Container();
-    });
+  handleVoteDownClicked(BuildContext context) async {
+    final image =
+        Provider.of<VotesNotifier>(context, listen: false).randomImage;
+    if (image != null) {
+      await context.read<VotesNotifier>().voteDown();
+    }
   }
 }

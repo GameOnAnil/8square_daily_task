@@ -1,8 +1,14 @@
 import 'package:cat_api_app/models/breeds_model.dart';
 import 'package:cat_api_app/providers/breeds_notifier.dart';
+import 'package:cat_api_app/ui/home/screens/breed_page/widgets/breeds_drop_down.dart';
+import 'package:cat_api_app/ui/home/widgets/error_text_widget.dart';
+import 'package:cat_api_app/ui/home/widgets/progress_indicator.dart';
 import 'package:cat_api_app/utils/response_status.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'widgets/breeds_description.dart';
+import 'widgets/breeds_header_image.dart';
 
 class BreedPage extends StatelessWidget {
   const BreedPage({Key? key}) : super(key: key);
@@ -10,156 +16,37 @@ class BreedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: ((context, ref, child) {
-        final status = context.watch<BreedsNotifier>().status;
-        final breedList = context.watch<BreedsNotifier>().breedList;
-        final error = context.watch<BreedsNotifier>().error;
-        if (status == Status.success) {
-          return _buildBody(breedList, context);
+        final notifier = context.watch<BreedsNotifier>();
+        if (notifier.status == Status.success) {
+          return _buildSuccessBody(
+              notifier.breedList, context, notifier.selectedBreed);
         }
-        if (status == Status.failure) {
-          return _buildErrorWidget(error);
+        if (notifier.status == Status.failure) {
+          return ErrorTextWidget(error: notifier.error);
         }
-        return _buildProgressIndicator();
+        return const AppProgressIndicator();
       }),
     );
   }
 
-  Padding _buildErrorWidget(String error) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Center(
-        child: Text("Error:$error"),
-      ),
-    );
-  }
-
-  _buildBody(List<Breeds> breedList, BuildContext context) {
-    final selectedBreed = context.watch<BreedsNotifier>().selectedBreed;
-    final imageUrl = selectedBreed?.image?.url;
+  _buildSuccessBody(
+      List<Breeds> breedList, BuildContext context, Breeds? selectedBreed) {
     return Column(
       children: [
-        _buildDropDownField(selectedBreed, context, breedList),
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                (imageUrl != null)
-                    ? _buildContent(selectedBreed!, context, imageUrl)
-                    : const Center()
-              ],
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  Column _buildContent(
-      Breeds selectedBreed, BuildContext context, String? imageUrl) {
-    return Column(
-      children: [
-        _buildHeaderImage(context, imageUrl, selectedBreed),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            selectedBreed.description ?? "",
-            style: const TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
-              fontSize: 18,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  SizedBox _buildHeaderImage(
-      BuildContext context, String? imageUrl, Breeds? selectedBreed) {
-    return SizedBox(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * .4,
-      child: Stack(
-        children: [
-          (imageUrl != null)
-              ? SizedBox(
-                  width: double.infinity,
-                  height: double.infinity,
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
+        BreedsDropDown(breedList: breedList),
+        (selectedBreed != null)
+            ? Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      BreedsHeaderImage(selectedBreeds: selectedBreed),
+                      BreedsDescription(selectedBreed: selectedBreed),
+                    ],
                   ),
-                )
-              : const SizedBox(),
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
-                    Colors.black,
-                    Colors.transparent,
-                  ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  stops: [.01, .3]),
-            ),
-          ),
-          Positioned(
-            bottom: 20,
-            left: 20,
-            child: Text(
-              selectedBreed?.name ?? "",
-              style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Padding _buildDropDownField(
-      Breeds? selectedBreed, BuildContext context, List<Breeds> breedList) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: DropdownButtonFormField<Breeds?>(
-        decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-            fillColor: Colors.white,
-            filled: true),
-        elevation: 10,
-        hint: const Text(
-          "Choose Breeds",
-          style: TextStyle(
-              fontSize: 18, color: Colors.black, fontWeight: FontWeight.w400),
-        ),
-        isExpanded: true,
-        value: selectedBreed,
-        borderRadius: BorderRadius.circular(10),
-        items: _getDropDownList(breedList),
-        onChanged: (item) {
-          context.read<BreedsNotifier>().selectBreed(item);
-        },
-      ),
-    );
-  }
-
-  List<DropdownMenuItem<Breeds?>>? _getDropDownList(List<Breeds>? breedList) {
-    return breedList
-        ?.map((e) => DropdownMenuItem<Breeds?>(
-              value: e,
-              child: Text(e.name ?? ""),
-            ))
-        .toList();
-  }
-
-  Center _buildProgressIndicator() {
-    return const Center(
-      child: CircularProgressIndicator(),
+                ),
+              )
+            : const Center()
+      ],
     );
   }
 }

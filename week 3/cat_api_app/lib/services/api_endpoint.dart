@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 class ApiEndPoint {
   static const BASE_URL = "https://api.thecatapi.com/v1";
   static const GET_ALL_BREEDS = "$BASE_URL/breeds/";

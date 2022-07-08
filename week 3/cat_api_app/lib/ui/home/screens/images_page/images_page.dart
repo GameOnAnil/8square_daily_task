@@ -32,21 +32,29 @@ class ImagesPage extends StatelessWidget {
             ),
           ],
         ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: CustomDropDown(
-            label: "Category",
-            itemList: ["category", "category2"],
-            initial: "category",
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: CustomDropDown(
-            label: "Breed",
-            itemList: ["Breed", "Breed1"],
-            initial: "Breed",
-          ),
+        Row(
+          children: const [
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CustomDropDown(
+                  label: "Category",
+                  itemList: ["category", "category2"],
+                  initial: "category",
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: CustomDropDown(
+                  label: "Breed",
+                  itemList: ["Breed", "Breed1"],
+                  initial: "Breed",
+                ),
+              ),
+            ),
+          ],
         )
       ],
     );
