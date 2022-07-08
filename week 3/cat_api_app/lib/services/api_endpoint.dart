@@ -1,4 +1,6 @@
 class ApiEndPoint {
-  static const BASE_URL = "https://api.thecatapi.com/v1/";
-  static const String GET_ALL_BREEDS = "${BASE_URL}breeds/";
+  static const BASE_URL = "https://api.thecatapi.com/v1";
+  static const GET_ALL_BREEDS = "$BASE_URL/breeds/";
+  static const GET_RANDOM_IMAGE = "$BASE_URL/images/search";
+  static const POST_VOTES = "$BASE_URL/votes";
 }

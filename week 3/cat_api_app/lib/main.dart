@@ -1,4 +1,5 @@
 import 'package:cat_api_app/providers/breeds_notifier.dart';
+import 'package:cat_api_app/providers/votes_notifier.dart';
 import 'package:cat_api_app/services/api_service.dart';
 import 'package:cat_api_app/ui/home/screens/home_page.dart';
 import 'package:chucker_flutter/chucker_flutter.dart';
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: ((context) => BreedsNotifier(ApiService())),
+        ),
+        ChangeNotifierProvider(
+          create: ((context) => VotesNotifier(ApiService())),
         )
       ],
       child: MaterialApp(

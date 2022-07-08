@@ -37,7 +37,7 @@ packages:
     source: hosted
     version: "4.0.6"
   chucker_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: chucker_flutter
       url: "https://pub.dartlang.org"
@@ -119,6 +119,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttertoast:
+    dependency: "direct main"
+    description:
+      name: fluttertoast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.0.9"
   http:
     dependency: transitive
     description:
