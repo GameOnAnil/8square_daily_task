@@ -26,13 +26,26 @@ class ApiService {
     }
   }
 
-  Future<RandomImage> getRandomImages() async {
+  Future<RandomImage> getRandomImage() async {
     try {
       final response = await _dio.get(ApiEndPoint.GET_RANDOM_IMAGE);
       final jsonResult = List<Map<String, dynamic>>.from(response.data);
       final List<RandomImage> imageList =
           jsonResult.map((e) => RandomImage.fromMap(e)).toList();
       return imageList[0];
+    } on DioError catch (e) {
+      throw DioException.fromDioError(e);
+    }
+  }
+
+  Future<List<RandomImage>> getRandomImageList(int limit) async {
+    try {
+      final response = await _dio
+          .get(ApiEndPoint.GET_RANDOM_IMAGE, queryParameters: {"limit": 10});
+      final jsonResult = List<Map<String, dynamic>>.from(response.data);
+      final List<RandomImage> imageList =
+          jsonResult.map((e) => RandomImage.fromMap(e)).toList();
+      return imageList;
     } on DioError catch (e) {
       throw DioException.fromDioError(e);
     }

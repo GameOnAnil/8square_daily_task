@@ -19,7 +19,6 @@ class HomePage extends StatelessWidget {
 
   AppBar _buildAppBar() {
     return AppBar(
-      elevation: 0.0,
       title: const Text('Home Page'),
       bottom: TabBar(
         isScrollable: true,

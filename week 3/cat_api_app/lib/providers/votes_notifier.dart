@@ -23,7 +23,7 @@ class VotesNotifier extends ChangeNotifier {
     try {
       error = "";
       _setStatus(Status.loading);
-      randomImage = await apiService.getRandomImages();
+      randomImage = await apiService.getRandomImage();
       _setStatus(Status.success);
     } catch (e) {
       error = e.toString();

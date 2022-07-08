@@ -1,6 +1,6 @@
 import 'package:cat_api_app/ui/home/screens/breed_page/breed_page.dart';
 import 'package:cat_api_app/ui/home/screens/favourite_page/favourite_page.dart';
-import 'package:cat_api_app/ui/home/screens/images_page/images_page.dart';
+import 'package:cat_api_app/ui/home/screens/search_page/search_page.dart';
 import 'package:cat_api_app/ui/home/screens/upload_page/upload_page.dart';
 import 'package:cat_api_app/ui/home/screens/votes_page/vote_page.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ List<Tab> tabTitleList = [
 List<Widget> tabContent = [
   const VotePage(),
   const BreedPage(),
-  const ImagesPage(),
+  const SearchPage(),
   const FavouritePage(),
   const UploadPage(),
 ];
