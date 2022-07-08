@@ -27,13 +27,13 @@ class VotePage extends StatelessWidget {
         children: [
           Expanded(
             child: VoteButton(
-              name: "Vote Up",
+              isLike: false,
               ontap: () => handleVoteUpClicked(context),
             ),
           ),
           Expanded(
             child: VoteButton(
-              name: "Vote Up",
+              isLike: true,
               ontap: () => handleVoteUpClicked(context),
             ),
           ),
